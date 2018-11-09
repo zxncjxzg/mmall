@@ -22,7 +22,6 @@ import java.util.Set;
 @Service("iCategoryService")
 public class CategoryServiceImpl implements ICategoryService {
 
-    //todo LoggerFactory是如何使用的呢
     private Logger logger= LoggerFactory.getLogger(CategoryServiceImpl.class);
 
     @Autowired
@@ -94,6 +93,7 @@ public class CategoryServiceImpl implements ICategoryService {
         return ServerResponse.createBySuccess(categoryIdList);
     }
     //递归算法，算出子节点
+    //直接使用Set就可以排除重复的对象，这个时候需要对Category类中的equals和hashcode方法进行重写
     private Set<Category> findChildCategory(Set<Category> categorySet,Integer categoryId){
         Category category=categoryMapper.selectByPrimaryKey(categoryId);
         if(category!=null){

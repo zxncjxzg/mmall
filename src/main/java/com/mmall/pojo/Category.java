@@ -87,7 +87,6 @@ public class Category {
         this.updateTime = updateTime;
     }
 
-    //todo 实体类中equals方法和hashcode方法的作用，尤其是hashcode方法的作用
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
