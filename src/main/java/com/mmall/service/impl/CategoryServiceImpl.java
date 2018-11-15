@@ -69,6 +69,7 @@ public class CategoryServiceImpl implements ICategoryService {
         List<Category> categoryList=categoryMapper.selectChildrenParallelCategory(categoryId);
         //2.判断集合是否为空
         if(CollectionUtils.isEmpty(categoryList)){
+            //日志会打印在哪个目录呢：打印在logback.xml配置的文件中
             logger.info("未找到当前分类的子分类");
         }
         //3.不为空则返回分类对象集合
