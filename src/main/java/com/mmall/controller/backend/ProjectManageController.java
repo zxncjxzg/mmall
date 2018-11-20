@@ -10,6 +10,7 @@ import com.mmall.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
@@ -82,6 +83,36 @@ public class ProjectManageController {
         }
         if(iUserService.checkAdminRole(user).isSuccess()){
             return iProductService.getProductDetail(productId);
+        }else{
+            return ServerResponse.createByErrorMessage("无权限操作");
+        }
+    }
+
+    @RequestMapping("get_product_List.do")
+    @ResponseBody
+    public ServerResponse getProductList(HttpSession session, @RequestParam(value="pageNum",defaultValue = "1") int pageNum,@RequestParam(value="pageSize",defaultValue = "10") int pageSize){
+        //1.判断用户是否登录
+        User user=(User)session.getAttribute(Constant.CURRENT_USER);
+        if(user==null){
+            return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(),"用户未登录，请登录管理员");
+        }
+        if(iUserService.checkAdminRole(user).isSuccess()){
+            return iProductService.getProductList(pageNum,pageSize);
+        }else{
+            return ServerResponse.createByErrorMessage("无权限操作");
+        }
+    }
+
+    @RequestMapping("search.do")
+    @ResponseBody
+    public ServerResponse productSearch(HttpSession session,String productName,Integer productId, @RequestParam(value="pageNum",defaultValue = "1") int pageNum,@RequestParam(value="pageSize",defaultValue = "10") int pageSize){
+        //1.判断用户是否登录
+        User user=(User)session.getAttribute(Constant.CURRENT_USER);
+        if(user==null){
+            return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(),"用户未登录，请登录管理员");
+        }
+        if(iUserService.checkAdminRole(user).isSuccess()){
+            return iProductService.productSearch(productName,productId,pageNum,pageSize);
         }else{
             return ServerResponse.createByErrorMessage("无权限操作");
         }
