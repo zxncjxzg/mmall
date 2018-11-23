@@ -180,7 +180,7 @@
     select
     <include refid="Base_Column_List"/>
     from mmall_product
-    ORDER BY ASC
+    ORDER BY name ASC
   </select>
   <select id="selectByNameAndProductId" resultMap="BaseResultMap" parameterType="map">
     SELECT
