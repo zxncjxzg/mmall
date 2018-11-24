@@ -1,5 +1,6 @@
 package com.mmall.service.impl;
 
+import com.google.common.base.Splitter;
 import com.google.common.collect.Lists;
 import com.mmall.common.Constant;
 import com.mmall.common.ServerResponse;
@@ -59,6 +60,29 @@ public class CartServiceImpl implements ICartService {
             cartMapper.updateByPrimaryKeySelective(cart);
         }
         //3.返回前端页面购物车VO对象
+        CartVo cartVo=this.getCartVo(userId);
+        return ServerResponse.createBySuccess(cartVo);
+    }
+
+    public ServerResponse<CartVo> update(Integer userId,Integer productId,Integer count){
+        if(productId==null || count==null){
+            return ServerResponse.createByErrorCodeMessage(Constant.ResponseCode.ILLEGAL_ARGUMENT.getCode(),Constant.ResponseCode.ILLEGAL_ARGUMENT.getDesc());
+        }
+        Cart cart=cartMapper.selectCartByUserIdAndProductId(userId,productId);
+        if(cart!=null){
+            cart.setQuantity(count);
+        }
+        cartMapper.updateByPrimaryKeySelective(cart);
+        CartVo cartVo=this.getCartVo(userId);
+        return ServerResponse.createBySuccess(cartVo);
+    }
+
+    public ServerResponse<CartVo> deleteProduct(Integer userId,String productIds){
+        List<String> productIdList= Splitter.on(",").splitToList(productIds);
+        if(CollectionUtils.isEmpty(productIdList)){
+            return ServerResponse.createByErrorCodeMessage(Constant.ResponseCode.ILLEGAL_ARGUMENT.getCode(),Constant.ResponseCode.ILLEGAL_ARGUMENT.getDesc());
+        }
+        cartMapper.deleteByUserIdAndProductIds(userId,productIdList);
         CartVo cartVo=this.getCartVo(userId);
         return ServerResponse.createBySuccess(cartVo);
     }
