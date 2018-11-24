@@ -1,7 +1,6 @@
 package com.mmall.controller.backend;
 
 import com.mmall.common.Constant;
-import com.mmall.common.ResponseCode;
 import com.mmall.common.ServerResponse;
 import com.mmall.pojo.Product;
 import com.mmall.pojo.User;
@@ -49,7 +48,7 @@ public class ProjectManageController {
         //1.判断用户是否登录
         User user=(User)session.getAttribute(Constant.CURRENT_USER);
         if(user==null){
-            return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(),"用户未登录，请登录管理员");
+            return ServerResponse.createByErrorCodeMessage(Constant.ResponseCode.NEED_LOGIN.getCode(),"用户未登录，请登录管理员");
         }
         //2.管理员添加产品
         if(iUserService.checkAdminRole(user).isSuccess()){
@@ -73,7 +72,7 @@ public class ProjectManageController {
         //1.判断用户是否登录
         User user=(User)session.getAttribute(Constant.CURRENT_USER);
         if(user==null){
-            return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(),"用户未登录，请登录管理员");
+            return ServerResponse.createByErrorCodeMessage(Constant.ResponseCode.NEED_LOGIN.getCode(),"用户未登录，请登录管理员");
         }
         //2.管理员添加产品
         if(iUserService.checkAdminRole(user).isSuccess()){
@@ -89,7 +88,7 @@ public class ProjectManageController {
         //1.判断用户是否登录
         User user=(User)session.getAttribute(Constant.CURRENT_USER);
         if(user==null){
-            return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(),"用户未登录，请登录管理员");
+            return ServerResponse.createByErrorCodeMessage(Constant.ResponseCode.NEED_LOGIN.getCode(),"用户未登录，请登录管理员");
         }
         if(iUserService.checkAdminRole(user).isSuccess()){
             return iProductService.getProductDetail(productId);
@@ -111,7 +110,7 @@ public class ProjectManageController {
         //1.判断用户是否登录
         User user=(User)session.getAttribute(Constant.CURRENT_USER);
         if(user==null){
-            return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(),"用户未登录，请登录管理员");
+            return ServerResponse.createByErrorCodeMessage(Constant.ResponseCode.NEED_LOGIN.getCode(),"用户未登录，请登录管理员");
         }
         if(iUserService.checkAdminRole(user).isSuccess()){
             return iProductService.getProductList(pageNum,pageSize);
@@ -135,7 +134,7 @@ public class ProjectManageController {
         //1.判断用户是否登录
         User user=(User)session.getAttribute(Constant.CURRENT_USER);
         if(user==null){
-            return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(),"用户未登录，请登录管理员");
+            return ServerResponse.createByErrorCodeMessage(Constant.ResponseCode.NEED_LOGIN.getCode(),"用户未登录，请登录管理员");
         }
         if(iUserService.checkAdminRole(user).isSuccess()){
             return iProductService.productSearch(productName,productId,pageNum,pageSize);
@@ -155,7 +154,7 @@ public class ProjectManageController {
     public ServerResponse upload(HttpSession session,@RequestParam(value = "upload_file",required = false) MultipartFile file, HttpServletRequest request){
         User user=(User)session.getAttribute(Constant.CURRENT_USER);
         if(user==null){
-            return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(),"用户未登录，请登录管理员");
+            return ServerResponse.createByErrorCodeMessage(Constant.ResponseCode.NEED_LOGIN.getCode(),"用户未登录，请登录管理员");
         }
         if(iUserService.checkAdminRole(user).isSuccess()){
             //1.获取文件上传路径

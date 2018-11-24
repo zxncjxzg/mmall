@@ -1,7 +1,6 @@
 package com.mmall.controller.backend;
 
 import com.mmall.common.Constant;
-import com.mmall.common.ResponseCode;
 import com.mmall.common.ServerResponse;
 import com.mmall.pojo.Category;
 import com.mmall.pojo.User;
@@ -43,7 +42,7 @@ public class CategoryManageController {
         //1.判断用户是否已登录
         User user=(User)session.getAttribute(Constant.CURRENT_USER);
         if(user==null){
-            return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(),"用户未登录，请登录");
+            return ServerResponse.createByErrorCodeMessage(Constant.ResponseCode.NEED_LOGIN.getCode(),"用户未登录，请登录");
         }
         //2.校验一下是否为管理员
         if(iUserService.checkAdminRole(user).isSuccess()){
@@ -68,7 +67,7 @@ public class CategoryManageController {
         //1.判断用户是否已登录
         User user=(User)session.getAttribute(Constant.CURRENT_USER);
         if(user==null){
-            return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(),"用户未登录，请登录");
+            return ServerResponse.createByErrorCodeMessage(Constant.ResponseCode.NEED_LOGIN.getCode(),"用户未登录，请登录");
         }
         //2.校验一下是否为管理员
         if(iUserService.checkAdminRole(user).isSuccess()){
@@ -92,7 +91,7 @@ public class CategoryManageController {
         //1.判断用户是否已登录
         User user=(User)session.getAttribute(Constant.CURRENT_USER);
         if(user==null){
-            return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(),"用户未登录，请登录");
+            return ServerResponse.createByErrorCodeMessage(Constant.ResponseCode.NEED_LOGIN.getCode(),"用户未登录，请登录");
         }
         //2.校验一下是否为管理员
         if(iUserService.checkAdminRole(user).isSuccess()){
@@ -116,7 +115,7 @@ public class CategoryManageController {
         //1.判断用户是否已登录
         User user=(User)session.getAttribute(Constant.CURRENT_USER);
         if(user==null){
-            return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(),"用户未登录，请登录");
+            return ServerResponse.createByErrorCodeMessage(Constant.ResponseCode.NEED_LOGIN.getCode(),"用户未登录，请登录");
         }
         //2.校验一下是否为管理员
         if(iUserService.checkAdminRole(user).isSuccess()){

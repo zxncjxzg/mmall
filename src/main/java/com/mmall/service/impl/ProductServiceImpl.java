@@ -4,7 +4,6 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.google.common.collect.Lists;
 import com.mmall.common.Constant;
-import com.mmall.common.ResponseCode;
 import com.mmall.common.ServerResponse;
 import com.mmall.dao.CategoryMapper;
 import com.mmall.dao.ProductMapper;
@@ -69,7 +68,7 @@ public class ProductServiceImpl implements IProductService {
      */
     public ServerResponse<String> setSaleStatus(Integer productId,Integer status){
         if(productId==null || status==null){
-            return ServerResponse.createByErrorCodeMessage(ResponseCode.ILLEGAL_ARGUMENT.getCode(),ResponseCode.ILLEGAL_ARGUMENT.getDesc());
+            return ServerResponse.createByErrorCodeMessage(Constant.ResponseCode.ILLEGAL_ARGUMENT.getCode(),Constant.ResponseCode.ILLEGAL_ARGUMENT.getDesc());
         }
         Product product=new Product();
         product.setId(productId);
@@ -88,7 +87,7 @@ public class ProductServiceImpl implements IProductService {
      */
     public ServerResponse<ProductDetailVo> getProductDetail(Integer productId){
         if(productId==null){
-            return ServerResponse.createByErrorCodeMessage(ResponseCode.ILLEGAL_ARGUMENT.getCode(),ResponseCode.ILLEGAL_ARGUMENT.getDesc());
+            return ServerResponse.createByErrorCodeMessage(Constant.ResponseCode.ILLEGAL_ARGUMENT.getCode(),Constant.ResponseCode.ILLEGAL_ARGUMENT.getDesc());
         }
         Product product=productMapper.selectByPrimaryKey(productId);
         if(product==null){
@@ -178,7 +177,7 @@ public class ProductServiceImpl implements IProductService {
 
     public ServerResponse<ProductDetailVo> getProductDetailForPortal(Integer productId){
         if(productId==null){
-            return ServerResponse.createByErrorCodeMessage(ResponseCode.ILLEGAL_ARGUMENT.getCode(),ResponseCode.ILLEGAL_ARGUMENT.getDesc());
+            return ServerResponse.createByErrorCodeMessage(Constant.ResponseCode.ILLEGAL_ARGUMENT.getCode(),Constant.ResponseCode.ILLEGAL_ARGUMENT.getDesc());
         }
         Product product=productMapper.selectByPrimaryKey(productId);
         if(product==null){
@@ -203,7 +202,7 @@ public class ProductServiceImpl implements IProductService {
     public ServerResponse<PageInfo> getProductByKeywordAndCategory(String keyword,Integer categoryId,int pageNum,int pageSize,String orderBy){
         //1.对参数keyword、categoryId是否为空进行判断
         if(StringUtils.isBlank(keyword) && categoryId==null){
-            return ServerResponse.createByErrorCodeMessage(ResponseCode.ILLEGAL_ARGUMENT.getCode(),ResponseCode.ILLEGAL_ARGUMENT.getDesc());
+            return ServerResponse.createByErrorCodeMessage(Constant.ResponseCode.ILLEGAL_ARGUMENT.getCode(),Constant.ResponseCode.ILLEGAL_ARGUMENT.getDesc());
         }
         List<Integer> categoryList=new ArrayList<Integer>();
         //2.递归查询本节点的id及孩子节点的id

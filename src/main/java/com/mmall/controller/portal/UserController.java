@@ -1,7 +1,6 @@
 package com.mmall.controller.portal;
 
 import com.mmall.common.Constant;
-import com.mmall.common.ResponseCode;
 import com.mmall.common.ServerResponse;
 import com.mmall.pojo.User;
 import com.mmall.service.IUserService;
@@ -191,7 +190,7 @@ public class UserController {
         //1.先判断一下该用户是否已经登录
         User currentUser=(User)session.getAttribute(Constant.CURRENT_USER);
         if(currentUser==null){
-            return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(),"未登录，需要强制登录");
+            return ServerResponse.createByErrorCodeMessage(Constant.ResponseCode.NEED_LOGIN.getCode(),"未登录，需要强制登录");
         }
         return iUserService.getInformation(currentUser.getId());
     }
