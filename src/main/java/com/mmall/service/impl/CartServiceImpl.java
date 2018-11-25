@@ -60,8 +60,7 @@ public class CartServiceImpl implements ICartService {
             cartMapper.updateByPrimaryKeySelective(cart);
         }
         //3.返回前端页面购物车VO对象
-        CartVo cartVo=this.getCartVo(userId);
-        return ServerResponse.createBySuccess(cartVo);
+        return this.list(userId);
     }
 
     public ServerResponse<CartVo> update(Integer userId,Integer productId,Integer count){
@@ -73,8 +72,7 @@ public class CartServiceImpl implements ICartService {
             cart.setQuantity(count);
         }
         cartMapper.updateByPrimaryKeySelective(cart);
-        CartVo cartVo=this.getCartVo(userId);
-        return ServerResponse.createBySuccess(cartVo);
+        return this.list(userId);
     }
 
     public ServerResponse<CartVo> deleteProduct(Integer userId,String productIds){
@@ -83,8 +81,29 @@ public class CartServiceImpl implements ICartService {
             return ServerResponse.createByErrorCodeMessage(Constant.ResponseCode.ILLEGAL_ARGUMENT.getCode(),Constant.ResponseCode.ILLEGAL_ARGUMENT.getDesc());
         }
         cartMapper.deleteByUserIdAndProductIds(userId,productIdList);
+        return this.list(userId);
+    }
+
+    public ServerResponse<CartVo> list(Integer userId){
         CartVo cartVo=this.getCartVo(userId);
         return ServerResponse.createBySuccess(cartVo);
+    }
+
+    public ServerResponse<CartVo> selectOrUnselect(Integer userId,Integer productId,Integer checked){
+        cartMapper.checkedOrUnchecked(userId,productId,checked);
+        return this.list(userId);
+    }
+
+    /**
+     * 获取当前用户购物车下的商品数量
+     * @param userId
+     * @return
+     */
+    public ServerResponse<Integer> getCartProductCount(Integer userId){
+        if(userId==null){
+            return ServerResponse.createBySuccess(0);
+        }
+        return ServerResponse.createBySuccess(cartMapper.selectCartProductCount(userId));
     }
 
     /**

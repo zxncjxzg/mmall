@@ -51,4 +51,97 @@ public class CartController {
         }
         return iCartService.deleteProduct(user.getId(),productIds);
     }
+
+    /**
+     * 查询购物车
+     * @param session
+     * @return
+     */
+    @RequestMapping("list.do")
+    @ResponseBody
+    public ServerResponse<CartVo> list(HttpSession session){
+        User user=(User)session.getAttribute(Constant.CURRENT_USER);
+        if(user==null){
+            ServerResponse.createByErrorCodeMessage(Constant.ResponseCode.NEED_LOGIN.getCode(),Constant.ResponseCode.NEED_LOGIN.getDesc());
+        }
+        return iCartService.list(user.getId());
+    }
+
+    /**
+     * 全选购物车
+     * @param session
+     * @return
+     */
+    @RequestMapping("select_all.do")
+    @ResponseBody
+    public ServerResponse<CartVo> selectAll(HttpSession session){
+        User user=(User)session.getAttribute(Constant.CURRENT_USER);
+        if(user==null){
+            ServerResponse.createByErrorCodeMessage(Constant.ResponseCode.NEED_LOGIN.getCode(),Constant.ResponseCode.NEED_LOGIN.getDesc());
+        }
+        return iCartService.selectOrUnselect(user.getId(),null,Constant.Cart.CHECKED);
+    }
+
+    /**
+     * 全反选购物车
+     * @param session
+     * @return
+     */
+    @RequestMapping("un_select_all.do")
+    @ResponseBody
+    public ServerResponse<CartVo> unSelectAll(HttpSession session){
+        User user=(User)session.getAttribute(Constant.CURRENT_USER);
+        if(user==null){
+            ServerResponse.createByErrorCodeMessage(Constant.ResponseCode.NEED_LOGIN.getCode(),Constant.ResponseCode.NEED_LOGIN.getDesc());
+        }
+        return iCartService.selectOrUnselect(user.getId(),null,Constant.Cart.UN_CHECKED);
+    }
+
+    /**
+     * 选中购物车中的某一件商品
+     * @param session
+     * @param productId
+     * @return
+     */
+    @RequestMapping("select.do")
+    @ResponseBody
+    public ServerResponse<CartVo> select(HttpSession session,Integer productId){
+        User user=(User)session.getAttribute(Constant.CURRENT_USER);
+        if(user==null){
+            ServerResponse.createByErrorCodeMessage(Constant.ResponseCode.NEED_LOGIN.getCode(),Constant.ResponseCode.NEED_LOGIN.getDesc());
+        }
+        return iCartService.selectOrUnselect(user.getId(),productId,Constant.Cart.CHECKED);
+    }
+
+    /**
+     * 反选购物车中某一件商品
+     * @param session
+     * @param productId
+     * @return
+     */
+    @RequestMapping("un_select.do")
+    @ResponseBody
+    public ServerResponse<CartVo> unSelect(HttpSession session,Integer productId){
+        User user=(User)session.getAttribute(Constant.CURRENT_USER);
+        if(user==null){
+            ServerResponse.createByErrorCodeMessage(Constant.ResponseCode.NEED_LOGIN.getCode(),Constant.ResponseCode.NEED_LOGIN.getDesc());
+        }
+        return iCartService.selectOrUnselect(user.getId(),productId,Constant.Cart.UN_CHECKED);
+    }
+
+    /**
+     * 获取当前用户购物车下的商品数量
+     * @param session
+     * @param productId
+     * @return
+     */
+    @RequestMapping("get_cart_product_count.do")
+    @ResponseBody
+    public ServerResponse<Integer> getCartProductCount(HttpSession session,Integer productId){
+        User user=(User)session.getAttribute(Constant.CURRENT_USER);
+        if(user==null){
+            ServerResponse.createBySuccess(0);
+        }
+        return iCartService.getCartProductCount(user.getId());
+    }
 }
