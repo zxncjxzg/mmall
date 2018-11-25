@@ -132,12 +132,11 @@ public class CartController {
     /**
      * 获取当前用户购物车下的商品数量
      * @param session
-     * @param productId
      * @return
      */
     @RequestMapping("get_cart_product_count.do")
     @ResponseBody
-    public ServerResponse<Integer> getCartProductCount(HttpSession session,Integer productId){
+    public ServerResponse<Integer> getCartProductCount(HttpSession session){
         User user=(User)session.getAttribute(Constant.CURRENT_USER);
         if(user==null){
             ServerResponse.createBySuccess(0);
