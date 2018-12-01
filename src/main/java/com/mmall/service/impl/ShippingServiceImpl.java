@@ -6,6 +6,8 @@ import com.mmall.common.ServerResponse;
 import com.mmall.dao.ShippingMapper;
 import com.mmall.pojo.Shipping;
 import com.mmall.service.IShippingService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +20,7 @@ import java.util.Map;
  */
 @Service("iShippingService")
 public class ShippingServiceImpl implements IShippingService {
+
     @Autowired
     private ShippingMapper shippingMapper;
 

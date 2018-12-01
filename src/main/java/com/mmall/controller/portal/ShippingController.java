@@ -67,7 +67,7 @@ public class ShippingController {
     @RequestMapping("list.do")
     @ResponseBody
     public ServerResponse<PageInfo> list(@RequestParam(value = "pageNum",defaultValue = "1") int pageNum,
-                                         @RequestParam(value = "pageNum",defaultValue = "10") int pageSize,
+                                         @RequestParam(value = "pageSize",defaultValue = "10") int pageSize,
                                          HttpSession session){
         User user=(User)session.getAttribute(Constant.CURRENT_USER);
         if(user==null){
