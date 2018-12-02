@@ -7,6 +7,7 @@ import com.mmall.common.Constant;
 import com.mmall.common.ServerResponse;
 import com.mmall.pojo.User;
 import com.mmall.service.IOrderService;
+import com.mmall.vo.OrderVo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +32,18 @@ public class OrderController {
 
     @Autowired
     private IOrderService iOrderService;
+
+
+    @RequestMapping("create.do")
+    @ResponseBody
+    public ServerResponse<OrderVo> create(HttpSession session, Integer shippingId){
+        User user=(User)session.getAttribute(Constant.CURRENT_USER);
+        if(user==null){
+            ServerResponse.createByErrorCodeMessage(Constant.ResponseCode.NEED_LOGIN.getCode(),Constant.ResponseCode.NEED_LOGIN.getDesc());
+        }
+        return iOrderService.createOrder(user.getId(),shippingId);
+    }
+
 
     /**
      * 支付
