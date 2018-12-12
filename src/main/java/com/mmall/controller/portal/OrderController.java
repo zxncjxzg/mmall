@@ -140,7 +140,6 @@ public class OrderController {
             logger.info("支付宝验证回调异常",e);
         }
 
-        //todo 验证各种参数
 
         ServerResponse serverResponse=iOrderService.alipayCallback(params);
         if(serverResponse.isSuccess()){

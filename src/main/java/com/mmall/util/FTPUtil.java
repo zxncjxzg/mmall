@@ -59,7 +59,6 @@ public class FTPUtil {
         //连接FTP服务器
         if(connectServer(this.ip,this.port,this.user,this.password)){
             try {
-                //todo 为什么需要更换工作目录呢，FTP不是拥有默认目录吗
                 ftpClient.changeWorkingDirectory(remotePath);
                 ftpClient.setBufferSize(1024);
                 ftpClient.setControlEncoding("UTF-8");

@@ -11,7 +11,6 @@ import java.util.concurrent.TimeUnit;
 /**
  * Created by 11790 on 2018/11/2.
  */
-//todo 充分理解此类的作用
 public class TokenCache {
     private static Logger logger = LoggerFactory.getLogger(TokenCache.class);
 
