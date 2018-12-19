@@ -11,6 +11,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * Created by 11790 on 2018/11/2.
  */
+//todo TokenCache的作用是什么
 public class TokenCache {
     private static Logger logger = LoggerFactory.getLogger(TokenCache.class);
 

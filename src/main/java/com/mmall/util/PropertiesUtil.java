@@ -10,6 +10,7 @@ import java.util.Properties;
 
 /**
  * Created by geely
+ * 完全可复用
  */
 public class PropertiesUtil {
 

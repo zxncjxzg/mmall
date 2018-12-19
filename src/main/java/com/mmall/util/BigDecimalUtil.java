@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 
 /**
  * Created by 11790 on 2018/11/24.
+ * 完全可复用
  */
 public class BigDecimalUtil {
 

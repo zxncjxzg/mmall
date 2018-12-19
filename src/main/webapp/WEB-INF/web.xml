@@ -23,6 +23,21 @@
         <url-pattern>/*</url-pattern>
     </filter-mapping>
 
+    <!-- 自己编写的编码过滤器
+    <filter>
+        <filter-name>encodingFilter</filter-name>
+        <filter-class>com.mmall.util.FilterUtil</filter-class>
+        <init-param>
+            <param-name>encoding</param-name>
+            <param-value>UTF-8</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>encodingFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    -->
+
 
     <listener>
         <listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>

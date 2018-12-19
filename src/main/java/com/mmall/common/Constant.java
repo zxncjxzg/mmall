@@ -6,6 +6,7 @@ import java.util.Set;
 
 /**
  * Created by 11790 on 2018/10/31.
+ * 部分可复用
  */
 public class Constant {
     //session中的currentUser屬性常量

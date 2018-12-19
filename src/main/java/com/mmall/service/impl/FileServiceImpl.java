@@ -15,6 +15,8 @@ import java.util.UUID;
 
 /**
  * Created by 11790 on 2018/11/20.
+ * 文件上传Service
+ * 完全可复用
  */
 @Service("iFileService")
 @Slf4j

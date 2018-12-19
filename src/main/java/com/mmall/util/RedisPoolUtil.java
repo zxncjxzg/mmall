@@ -6,6 +6,7 @@ import redis.clients.jedis.Jedis;
 
 /**
  * Created by 11790 on 2018/12/12.
+ * 完全可复用
  */
 @Slf4j
 public class RedisPoolUtil {

@@ -11,6 +11,7 @@ import java.util.List;
 
 /**
  * Created by 11790 on 2018/11/21.
+ * 完全可复用
  */
 public class FTPUtil {
     private static final Logger logger= LoggerFactory.getLogger(FTPUtil.class);
