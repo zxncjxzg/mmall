@@ -33,7 +33,7 @@ public class InterceptorUtil implements HandlerInterceptor {
             return true;
         }
         //用户未登录，跳转至主页
-        request.getRequestDispatcher("/WEB-INF/jsp/index.jsp").forward(request,response);
+        //request.getRequestDispatcher("/WEB-INF/jsp/index.jsp").forward(request,response);
         return false;
     }
 

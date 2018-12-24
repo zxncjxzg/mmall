@@ -15,7 +15,10 @@ public class Constant {
     public static final String USERNAME="username";
     public static final String EMAIL="email";
 
-    //
+    //Redis过期时间
+    public interface RedisCacheExtime{
+        int REDIS_SESSION_EXTIME=60*30; //30分钟
+    }
     public interface ProductOrderBy{
         Set<String> PRICE_ASC_DESC= Sets.newHashSet("price_desc","price_asc");
     }
