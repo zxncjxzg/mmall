@@ -3,6 +3,7 @@
 <h1>tomcat 1</h1>
 <h1>tomcat 1</h1>
 <h1>tomcat 1</h1>
+<h1>在github网站上直接编辑index.jsp<h1>
 <h2>Hello World!</h2>
 
 <!--springmvc上传文件-->
