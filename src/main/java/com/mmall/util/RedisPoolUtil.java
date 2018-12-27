@@ -1,6 +1,5 @@
 package com.mmall.util;
 
-import com.mmall.common.RedisPool;
 import lombok.extern.slf4j.Slf4j;
 import redis.clients.jedis.Jedis;
 
