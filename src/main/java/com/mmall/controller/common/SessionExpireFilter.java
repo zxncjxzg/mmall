@@ -4,7 +4,7 @@ import com.mmall.common.Constant;
 import com.mmall.pojo.User;
 import com.mmall.util.CookieUtil;
 import com.mmall.util.JsonUtil;
-import com.mmall.util.RedisPoolUtil;
+import com.mmall.util.RedisShardedPoolUtil;
 import org.apache.commons.lang3.StringUtils;
 
 import javax.servlet.*;
@@ -25,10 +25,10 @@ public class SessionExpireFilter implements Filter {
         HttpServletRequest httpServletRequest=(HttpServletRequest)servletRequest;
         String loginToken= CookieUtil.readLoginToken(httpServletRequest);//从Cookie中获取mmall_login_token的值，也就是sessionId的值
         if(StringUtils.isNotEmpty(loginToken)){
-            String userJsonStr= RedisPoolUtil.get(loginToken);
+            String userJsonStr= RedisShardedPoolUtil.get(loginToken);
             User user= JsonUtil.stringToObj(userJsonStr,User.class);
             if(user!=null){
-                RedisPoolUtil.expire(loginToken, Constant.RedisCacheExtime.REDIS_SESSION_EXTIME);//重新设置Session过期时间
+                RedisShardedPoolUtil.expire(loginToken, Constant.RedisCacheExtime.REDIS_SESSION_EXTIME);//重新设置Session过期时间
             }
         }
         filterChain.doFilter(servletRequest,servletResponse);

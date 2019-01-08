@@ -5,7 +5,7 @@ import com.mmall.common.ServerResponse;
 import com.mmall.pojo.User;
 import com.mmall.service.IUserService;
 import com.mmall.util.JsonUtil;
-import com.mmall.util.RedisPoolUtil;
+import com.mmall.util.RedisShardedPoolUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,7 +33,7 @@ public class UserManageController {
             if(user.getRole()== Constant.Role.ROLE_ADMIN){
                 //如果是管理员，将user放入session中，并且返回响应
                 session.setAttribute(Constant.CURRENT_USER,user);
-                RedisPoolUtil.setEx(session.getId(), JsonUtil.objToString(response.getData()),Constant.RedisCacheExtime.REDIS_SESSION_EXTIME);
+                RedisShardedPoolUtil.setEx(session.getId(), JsonUtil.objToString(response.getData()),Constant.RedisCacheExtime.REDIS_SESSION_EXTIME);
                 return response;
             }else{
                 return ServerResponse.createByErrorMessage("不是管理员，无法登录");
