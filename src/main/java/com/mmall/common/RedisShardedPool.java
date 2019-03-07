@@ -64,12 +64,4 @@ public class RedisShardedPool {
         pool.returnBrokenResource(jedis);
     }
 
-    public static void main(String[] args) {
-        ShardedJedis jedis=pool.getResource();
-        for(int i=0;i<10;i++){
-            jedis.set("key"+i,"value"+i);
-        }
-        returnResource(jedis);//归还ShardedJedis连接
-        System.out.printf("end");
-    }
 }

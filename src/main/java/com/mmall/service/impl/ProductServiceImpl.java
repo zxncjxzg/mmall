@@ -132,6 +132,7 @@ public class ProductServiceImpl implements IProductService {
     }
 
     public ServerResponse<PageInfo> getProductList(int pageNum,int pageSize){
+        //1.传入pageNum和pageSize参数给PageHelper进行处理
         PageHelper.startPage(pageNum,pageSize);
         List<Product> productList=productMapper.selectList();
 
@@ -139,6 +140,8 @@ public class ProductServiceImpl implements IProductService {
         for(Product productItem:productList){
             productListVoList.add(assembleProductListVo(productItem));
         }
+        //2.PageHelper可能已经提前处理了pageNum和pageSize信息，将结果集传给PageInfo进行处理，就可以得到满足分页条件的结果集
+        //最终的结果集就保存在PageInfo对象中
         PageInfo pageResult=new PageInfo(productList);
         pageResult.setList(productListVoList);
         return ServerResponse.createBySuccess(pageResult);
