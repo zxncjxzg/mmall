@@ -39,6 +39,9 @@ public class UserSpringSessionController {
     @RequestMapping(value = "login.do", method = RequestMethod.GET)
     @ResponseBody
     public ServerResponse<User> login(String username, String password, HttpSession session){
+        int i=0;
+        int j=6/i;
+
         ServerResponse<User> response=iUserService.login(username,password);
         if(response.isSuccess()){
             session.setAttribute(Constant.CURRENT_USER,response.getData());
